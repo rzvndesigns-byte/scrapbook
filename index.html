@@ -149,9 +149,10 @@ button:active{
   max-width:900px;
   margin-top:50px;
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
   gap:40px;
   padding:20px;
+  width:100%;
 }
 
 .polaroid{
@@ -416,10 +417,21 @@ button:active{
 @media(max-width:700px){
   h1{font-size:36px !important;}
   h2{font-size:28px;}
-  .scrapbook{grid-template-columns:1fr;gap:30px;padding:10px;}
-  .polaroid{height:300px;}
+  .scrapbook{
+    grid-template-columns:1fr;
+    gap:30px;
+    padding:10px;
+    max-width:100%;
+  }
+  .polaroid{
+    height:auto;
+    min-height:280px;
+    max-width:400px;
+    margin:0 auto;
+    width:100%;
+  }
   .polaroid-front,.polaroid-back{padding:12px;}
-  .polaroid-img,.polaroid-photo{height:160px;}
+  .polaroid-img,.polaroid-photo{height:180px;}
   .polaroid-caption{font-size:16px;margin-top:10px;}
   .polaroid-text{font-size:12px;margin-top:6px;line-height:1.4;}
   .flip-hint{font-size:10px;bottom:8px;right:12px;}
@@ -428,6 +440,16 @@ button:active{
   .confession-card{padding:35px 25px;}
   button{padding:12px 28px;font-size:15px;}
   .tape{width:60px;height:20px;}
+}
+
+@media(min-width:701px) and (max-width:1024px){
+  .scrapbook{
+    grid-template-columns:repeat(2, 1fr);
+    gap:35px;
+  }
+  .polaroid{
+    height:300px;
+  }
 }
 
 </style>
