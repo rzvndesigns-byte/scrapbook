@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💕 Our Love Story</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --cream:#fef9f3;
+  --paper:#fff8e7;
+  --brown:#8b4513;
+  --rose:#d4526e;
+  --gold:#c9a961;
+  --text:#3e2723;
+  --shadow:rgba(139,69,19,0.15);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--cream);
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139,69,19,0.03) 2px, rgba(139,69,19,0.03) 4px);
+  color:var(--text);
+  overflow-x:hidden;
+  position:relative;
+}
+
+body::before{
+  content:'';
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="2" fill="%23d4526e" opacity="0.1"/></svg>') repeat;
+  pointer-events:none;
+  z-index:0;
+}
+
+section{
+  min-height:100vh;
+  padding:60px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  opacity:0;
+  transform:scale(0.9) rotate(-2deg);
+  transition:0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position:relative;
+  z-index:1;
+}
+
+section.active{
+  opacity:1;
+  transform:scale(1) rotate(0);
+}
+
+h1,h2{
+  font-family:'Playfair Display',serif;
+  font-weight:600;
+  color:var(--brown);
+  text-shadow:2px 2px 0 rgba(201,169,97,0.3);
+}
+
+button{
+  margin-top:30px;
+  padding:14px 32px;
+  border:3px solid var(--brown);
+  border-radius:8px;
+  background:var(--paper);
+  color:var(--brown);
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:4px 4px 0 var(--shadow);
+  position:relative;
+  font-family:'Playfair Display',serif;
+}
+
+button:hover{
+  transform:translate(2px,2px);
+  box-shadow:2px 2px 0 var(--shadow);
+}
+
+button:active{
+  transform:translate(4px,4px);
+  box-shadow:0 0 0 var(--shadow);
+}
+
+.tape{
+  position:absolute;
+  width:80px;
+  height:25px;
+  background:rgba(255,255,255,0.4);
+  border:1px solid rgba(139,69,19,0.2);
+  transform:rotate(-5deg);
+}
+
+.confetti{
+  position:fixed;
+  width:10px;
+  height:10px;
+  background:var(--rose);
+  animation:fall 4s linear infinite;
+  pointer-events:none;
+  z-index:999;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-100vh) rotate(0deg);opacity:1;}
+  100%{transform:translateY(100vh) rotate(360deg);opacity:0;}
+}
+
+#intro{
+  background:linear-gradient(135deg, var(--cream), var(--paper));
+}
+
+#intro h1{
+  font-size:48px;
+  margin-bottom:20px;
+}
+
+#intro p{
+  max-width:550px;
+  margin-top:20px;
+  color:var(--text);
+  line-height:1.9;
+  font-size:17px;
+  background:rgba(255,248,231,0.6);
+  padding:25px;
+  border-radius:10px;
+  border-left:4px solid var(--rose);
+}
+
+.scrapbook{
+  max-width:900px;
+  margin-top:50px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:40px;
+  padding:20px;
+}
+
+.polaroid{
+  background:transparent;
+  padding:0;
+  box-shadow:none;
+  transform:rotate(0deg);
+  transition:0.4s;
+  cursor:pointer;
+  position:relative;
+  perspective:1000px;
+  height:320px;
+}
+
+.polaroid:nth-child(1){transform:rotate(-3deg);}
+.polaroid:nth-child(2){transform:rotate(2deg);}
+.polaroid:nth-child(3){transform:rotate(-2deg);}
+.polaroid:nth-child(4){transform:rotate(3deg);}
+
+.polaroid:hover{
+  transform:rotate(0deg) scale(1.05) translateY(-10px);
+  z-index:10;
+}
+
+.polaroid-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform 0.6s;
+  transform-style:preserve-3d;
+}
+
+.polaroid.flipped .polaroid-inner{
+  transform:rotateY(180deg);
+}
+
+.polaroid-front,.polaroid-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  background:white;
+  padding:15px;
+  box-shadow:0 8px 25px var(--shadow);
+  border-radius:3px;
+  overflow:hidden;
+}
+
+.polaroid-back{
+  transform:rotateY(180deg);
+}
+
+.polaroid-photo{
+  width:100%;
+  height:200px;
+  background:linear-gradient(135deg,#e0e0e0,#f5f5f5);
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  color:#999;
+  border:2px dashed #ccc;
+  overflow:hidden;
+}
+
+.polaroid-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.polaroid-img{
+  width:100%;
+  height:200px;
+  background:linear-gradient(135deg, var(--rose), var(--gold));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:5px;
+  position:relative;
+  overflow:hidden;
+}
+
+.polaroid-img svg{
+  width:80px;
+  height:80px;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+}
+
+.polaroid-img::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle, rgba(255,255,255,0.3), transparent 60%);
+  animation:shimmer 3s infinite;
+}
+
+@keyframes shimmer{
+  0%{transform:translate(-50%,-50%) rotate(0deg);}
+  100%{transform:translate(-50%,-50%) rotate(360deg);}
+}
+
+.polaroid-caption{
+  margin-top:15px;
+  font-family:'Playfair Display',serif;
+  font-size:17px;
+  color:var(--brown);
+  font-weight:600;
+  overflow-wrap:break-word;
+}
+
+.polaroid-text{
+  margin-top:8px;
+  font-size:13px;
+  color:var(--text);
+  line-height:1.5;
+  overflow-wrap:break-word;
+  word-wrap:break-word;
+}
+
+.flip-hint{
+  position:absolute;
+  bottom:10px;
+  right:15px;
+  font-size:11px;
+  color:var(--rose);
+  font-style:italic;
+  z-index:1;
+}
+
+#reveal{
+  background:var(--paper);
+}
+
+#reveal p{
+  max-width:650px;
+  margin-top:25px;
+  line-height:2;
+  color:var(--text);
+  font-size:17px;
+  background:rgba(255,255,255,0.5);
+  padding:30px;
+  border-radius:15px;
+  border:2px dashed var(--rose);
+}
+
+.heart-big{
+  font-size:90px;
+  margin-top:30px;
+  animation:heartbeat 1.5s infinite;
+  filter:drop-shadow(0 5px 15px rgba(212,82,110,0.4));
+  cursor:pointer;
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  10%{transform:scale(1.1);}
+  20%{transform:scale(1);}
+  30%{transform:scale(1.1);}
+  40%{transform:scale(1);}
+}
+
+.heart-big:hover{
+  animation:spin 0.6s ease;
+}
+
+@keyframes spin{
+  0%{transform:rotate(0deg) scale(1);}
+  50%{transform:rotate(180deg) scale(1.2);}
+  100%{transform:rotate(360deg) scale(1);}
+}
+
+.confession-booth{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(62,39,35,0.95);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  animation:fadeIn 0.5s;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+.confession-booth.show{
+  display:flex;
+}
+
+.confession-card{
+  background:var(--paper);
+  padding:45px;
+  border-radius:15px;
+  max-width:500px;
+  width:90%;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  border:5px solid var(--brown);
+  position:relative;
+  animation:slideIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes slideIn{
+  from{transform:translateY(-100vh) rotate(-10deg);opacity:0;}
+  to{transform:translateY(0) rotate(0);opacity:1;}
+}
+
+.confession-card h3{
+  font-family:'Playfair Display',serif;
+  color:var(--rose);
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+.confession-card p{
+  line-height:1.8;
+  margin-bottom:15px;
+  font-size:16px;
+  color:var(--text);
+}
+
+.confession-close{
+  position:absolute;
+  top:15px;
+  right:20px;
+  background:var(--rose);
+  border:none;
+  font-size:24px;
+  cursor:pointer;
+  padding:5px 15px;
+  margin:0;
+  color:white;
+  box-shadow:none;
+  border-radius:5px;
+  font-weight:bold;
+}
+
+.confession-close:hover{
+  transform:scale(1.1);
+}
+
+.instruction{
+  background:rgba(212,82,110,0.1);
+  padding:12px 20px;
+  border-radius:8px;
+  border-left:4px solid var(--rose);
+  margin-top:20px;
+  font-size:14px;
+  color:var(--brown);
+  font-weight:500;
+}
+
+@media(max-width:700px){
+  h1{font-size:36px !important;}
+  h2{font-size:28px;}
+  .scrapbook{grid-template-columns:1fr;gap:30px;padding:10px;}
+  .polaroid{height:300px;}
+  .polaroid-front,.polaroid-back{padding:12px;}
+  .polaroid-img,.polaroid-photo{height:160px;}
+  .polaroid-caption{font-size:16px;margin-top:10px;}
+  .polaroid-text{font-size:12px;margin-top:6px;line-height:1.4;}
+  .flip-hint{font-size:10px;bottom:8px;right:12px;}
+  #intro p{padding:20px;font-size:16px;}
+  #reveal p{padding:25px;font-size:16px;}
+  .confession-card{padding:35px 25px;}
+  button{padding:12px 28px;font-size:15px;}
+  .tape{width:60px;height:20px;}
+}
+
+</style>
+</head>
+<body>
+
+<section id="intro" class="active">
+<h1>📖 Our Love Story</h1>
+<p>
+Every great love story is made of small, beautiful moments. This is ours — a collection of memories that turned into something extraordinary.
+<br><br>
+Let's walk through the chapters that brought us here.
+</p>
+<button onclick="next('timelineSection')">Open Our Scrapbook ✨</button>
+</section>
+
+<section id="timelineSection">
+<h2>💕 Memory Lane</h2>
+<div class="instruction">
+  👆 Tap each polaroid to flip and see the memory
+</div>
+<div id="memoryCounter" style="margin-top:15px;font-size:15px;color:var(--gold);font-weight:600;font-family:'Playfair Display',serif;">0 of 4 memories unlocked</div>
+
+<div class="scrapbook">
+
+<div class="polaroid" onclick="flip(this)">
+  <div class="tape" style="top:-12px;left:20px;z-index:2;"></div>
+  <div class="polaroid-inner">
+    <div class="polaroid-front">
+      <div class="polaroid-img">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="35" stroke="white" stroke-width="3" fill="rgba(255,255,255,0.2)"/>
+          <path d="M50 35 L55 45 L66 47 L58 55 L60 66 L50 60 L40 66 L42 55 L34 47 L45 45 Z" fill="white"/>
+        </svg>
+      </div>
+      <div class="polaroid-caption">The First Spark</div>
+      <div class="flip-hint">tap to flip</div>
+    </div>
+    <div class="polaroid-back">
+      <div class="polaroid-photo">
+        <span>📷 Your photo here</span>
+      </div>
+      <div class="polaroid-text">
+        It wasn't loud or dramatic. Just a moment where everything felt different. A glance, a smile, a feeling that something special was beginning.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="polaroid" onclick="flip(this)">
+  <div class="tape" style="top:-12px;right:20px;z-index:2;"></div>
+  <div class="polaroid-inner">
+    <div class="polaroid-front">
+      <div class="polaroid-img">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="30" width="60" height="45" rx="8" stroke="white" stroke-width="3" fill="rgba(255,255,255,0.2)"/>
+          <path d="M20 35 L50 55 L80 35" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="70" cy="45" r="8" fill="#ff6b9d"/>
+        </svg>
+      </div>
+      <div class="polaroid-caption">First Real Talk</div>
+      <div class="flip-hint">tap to flip</div>
+    </div>
+    <div class="polaroid-back">
+      <div class="polaroid-photo">
+        <span>📷 Your photo here</span>
+      </div>
+      <div class="polaroid-text">
+        Hours felt like minutes. We talked about everything and nothing. It was easy, honest, and felt like coming home.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="polaroid" onclick="flip(this)">
+  <div class="tape" style="top:-12px;left:30px;z-index:2;"></div>
+  <div class="polaroid-inner">
+    <div class="polaroid-front">
+      <div class="polaroid-img">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="38" stroke="white" stroke-width="3" fill="rgba(255,255,255,0.2)"/>
+          <path d="M30 50 L40 40 L50 50 L60 35 L70 45" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <circle cx="30" cy="50" r="3" fill="white"/>
+          <circle cx="50" cy="50" r="3" fill="white"/>
+          <circle cx="70" cy="45" r="3" fill="white"/>
+          <path d="M45 65 Q50 70 55 65" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="polaroid-caption">Adventures Together</div>
+      <div class="flip-hint">tap to flip</div>
+    </div>
+    <div class="polaroid-back">
+      <div class="polaroid-photo">
+        <span>📷 Your photo here</span>
+      </div>
+      <div class="polaroid-text">
+        New places, shared laughter, inside jokes. Every adventure made us closer, turning moments into memories we'll never forget.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="polaroid" onclick="flip(this)">
+  <div class="tape" style="top:-12px;right:25px;z-index:2;"></div>
+  <div class="polaroid-inner">
+    <div class="polaroid-front">
+      <div class="polaroid-img">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 25 C50 25 30 35 30 50 C30 65 40 75 50 80 C60 75 70 65 70 50 C70 35 50 25 50 25 Z" fill="white" stroke="white" stroke-width="2"/>
+          <path d="M45 50 L48 55 L55 45" stroke="#d4526e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="polaroid-caption">Right Now</div>
+      <div class="flip-hint">tap to flip</div>
+    </div>
+    <div class="polaroid-back">
+      <div class="polaroid-photo">
+        <span>📷 Your photo here</span>
+      </div>
+      <div class="polaroid-text">
+        Not perfect, but real. Not flawless, but chosen. Every day, we choose each other — and that's what makes this beautiful.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<button onclick="next('reveal')">Continue to Final Chapter 📜</button>
+</section>
+
+<section id="reveal">
+<h2>🌹 The Best Part</h2>
+<p>
+Looking back at all these moments, one thing becomes clear: it wasn't just about the big milestones.
+<br><br>
+It was the quiet consistency. The way two separate lives leaned closer, step by step, choice by choice.
+<br><br>
+This story isn't finished. It's still being written — and that's the most beautiful part of all.
+</p>
+<div class="heart-big" onclick="showConfession()">💕</div>
+<div class="instruction" style="max-width:400px;margin:20px auto 0;">
+  💡 Click the heart above for a special confession
+</div>
+</section>
+
+<div class="confession-booth" id="confessionBooth">
+  <div class="confession-card">
+    <button class="confession-close" onclick="closeConfession()">×</button>
+    <h3>A Secret Confession 💌</h3>
+    <p><strong>Here's what I never told you:</strong></p>
+    <p>Every single day, I find new reasons to be grateful for you. Not just for the big moments, but for the small ones too.</p>
+    <p>The way you laugh. The way you listen. The way you make ordinary days feel extraordinary.</p>
+    <p>This scrapbook could have a thousand more pages, and it still wouldn't capture everything you mean to me.</p>
+    <p style="margin-top:25px;font-style:italic;color:var(--rose);font-weight:600;">Thank you for being my favorite chapter. 💕</p>
+  </div>
+</div>
+
+<script>
+
+function next(id){
+  document.querySelectorAll("section").forEach(sec=>{
+    sec.classList.remove("active");
+  });
+  setTimeout(()=>{
+    const section = document.getElementById(id);
+    section.classList.add("active");
+    setTimeout(()=>section.scrollIntoView({behavior:'smooth',block:'start'}),100);
+  },300);
+}
+
+let flippedCount = 0;
+
+function flip(card){
+  const wasFlipped = card.classList.contains('flipped');
+  card.classList.toggle("flipped");
+  if(!wasFlipped){
+    flippedCount++;
+    updateCounter();
+  }
+}
+
+function updateCounter(){
+  const counter = document.getElementById('memoryCounter');
+  if(counter){
+    counter.textContent = `${flippedCount} of 4 memories unlocked`;
+    if(flippedCount === 4){
+      counter.style.color = 'var(--rose)';
+      counter.innerHTML = '✨ All memories unlocked! ✨';
+    }
+  }
+}
+
+function showConfession(){
+  document.getElementById('confessionBooth').classList.add('show');
+  createConfetti();
+}
+
+function closeConfession(){
+  document.getElementById('confessionBooth').classList.remove('show');
+}
+
+function createConfetti(){
+  for(let i=0;i<30;i++){
+    setTimeout(()=>{
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random()*100 + '%';
+      confetti.style.background = ['#d4526e','#c9a961','#8b4513'][Math.floor(Math.random()*3)];
+      confetti.style.animationDelay = Math.random()*2 + 's';
+      confetti.style.animationDuration = (Math.random()*2+3) + 's';
+      document.body.appendChild(confetti);
+      setTimeout(()=> confetti.remove(), 5000);
+    }, i*100);
+  }
+}
+
+</script>
+
+</body>
+</html>
