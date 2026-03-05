@@ -417,29 +417,57 @@ button:active{
 @media(max-width:700px){
   h1{font-size:36px !important;}
   h2{font-size:28px;}
+  section{padding:40px 15px;}
   .scrapbook{
     grid-template-columns:1fr;
-    gap:30px;
-    padding:10px;
+    gap:40px;
+    padding:15px;
     max-width:100%;
+    width:100%;
   }
   .polaroid{
     height:auto;
-    min-height:280px;
-    max-width:400px;
+    min-height:auto;
+    max-width:95%;
     margin:0 auto;
     width:100%;
+    transform:rotate(0deg) !important;
   }
-  .polaroid-front,.polaroid-back{padding:12px;}
-  .polaroid-img,.polaroid-photo{height:180px;}
-  .polaroid-caption{font-size:16px;margin-top:10px;}
-  .polaroid-text{font-size:12px;margin-top:6px;line-height:1.4;}
-  .flip-hint{font-size:10px;bottom:8px;right:12px;}
+  .polaroid:hover{
+    transform:scale(1.02) !important;
+  }
+  .polaroid-inner{
+    min-height:350px;
+  }
+  .polaroid-front,.polaroid-back{
+    padding:15px 15px 50px 15px;
+    position:relative;
+  }
+  .polaroid-img,.polaroid-photo{
+    height:200px;
+    width:100%;
+  }
+  .polaroid-caption{
+    font-size:15px;
+    margin-top:12px;
+    text-align:center;
+  }
+  .polaroid-text{
+    font-size:13px;
+    margin-top:8px;
+    line-height:1.5;
+    text-align:center;
+  }
+  .flip-hint{
+    font-size:11px;
+    bottom:15px;
+    right:15px;
+  }
   #intro p{padding:20px;font-size:16px;}
   #reveal p{padding:25px;font-size:16px;}
   .confession-card{padding:35px 25px;}
   button{padding:12px 28px;font-size:15px;}
-  .tape{width:60px;height:20px;}
+  .tape{width:50px;height:18px;}
 }
 
 @media(min-width:701px) and (max-width:1024px){
